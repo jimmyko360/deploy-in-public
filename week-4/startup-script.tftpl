@@ -1,0 +1,7 @@
+#!/bin/bash
+yum update -y
+yum install docker -y
+service docker start
+aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${ecr_repo}
+docker pull ${ecr_repo}:latest
+docker run -dp 80:3000 ${ecr_repo}
