@@ -1,0 +1,7 @@
+#!/bin/bash
+yum install nginx -y
+nginx
+cat > /usr/share/nginx/html/index.html << "EOF"
+<h1>Welcome to Availability Zone ${zone_number}!</h1>
+<p>The other Availability Zone is unavailable at the moment.</p>
+EOF
