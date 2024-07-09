@@ -1,0 +1,19 @@
+#!/bin/bash
+yum install -y nginx
+nginx
+
+# this did not work. maybe I need to wrap it with a server{} block
+cat > /etc/nginx/conf.d/reverse-proxy.conf << "EOF"
+location / {
+    proxy_pass http://${private_ip}:80;
+}
+EOF
+
+# this did not work either. I don't know where I found this code snippet
+# cat >> /etc/nginx/sites-available/default << "EOF"
+# location / {
+#     proxy_pass http://10.0.0.163:80;
+# }
+# EOF
+
+nginx -s reload
