@@ -32,7 +32,3 @@ resource "aws_alb_target_group_attachment" "my-tf-alb-tgas" {
   target_id        = aws_instance.my-tf-instances[count.index].id
   port             = 80
 }
-
-resource "aws_instance" "name" {
-
-}
